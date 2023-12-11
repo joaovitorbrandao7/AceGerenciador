@@ -1,0 +1,42 @@
+﻿@page "/Clientes/{skip?}/{take?}"
+@model FrontAceGerenciador.Pages.Shared.ClientesModel
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h1 class="mt-5">Nossos clientes</h1>
+
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.ClienteList[0].ClienteId)</td>
+                <td>@Html.DisplayNameFor(model => model.ClienteList[0].NomeCliente)</td>
+                <td>@Html.DisplayNameFor(model => model.ClienteList[0].TelefoneCliente)</td>
+                <td>@Html.DisplayNameFor(model => model.ClienteList[0].EmailCliente)</td>
+                <td>@Html.DisplayNameFor(model => model.ClienteList[0].EnderecoCliente)</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var clienteModel in Model.ClienteList)
+            {
+                <tr>
+                    <td>@Html.DisplayTextFor(model => clienteModel.ClienteId)</td>
+                    <td>@Html.DisplayTextFor(model => clienteModel.NomeCliente)</td>
+                    <td>@Html.DisplayTextFor(model => clienteModel.TelefoneCliente)</td>
+                    <td>@Html.DisplayTextFor(model => clienteModel.EmailCliente)</td>
+                    <td>@Html.DisplayTextFor(model => clienteModel.EnderecoCliente)</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@clienteModel.ClienteId">Alterar</a>
+                        <a asp-page="./Details" asp-route-id="@clienteModel.ClienteId">Visualizar</a>
+                        <a asp-page="./Delete" asp-route-id="@clienteModel.ClienteId">Remover</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

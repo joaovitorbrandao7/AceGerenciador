@@ -1,0 +1,28 @@
+﻿@page
+@model FrontAceGerenciador2.Pages.Funcionario.DetailsModel
+
+
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-6">
+
+            <div class="formEdit">
+                <h3 class="">Sobre o Cliente</h3>
+
+                <div class="mt-3 mb-5">
+                    <p><strong>Nome: </strong>@Model.FuncionarioModel.NomeFuncionario</p>
+                    <p><strong>Data de admissão: </strong>@Model.FuncionarioModel.DataAdmissao</p>
+                    <p><strong>Cargo: </strong>@Model.FuncionarioModel.CargoFuncionario</p>
+                    
+                </div>
+
+                <a asp-page="Funcionarios" class="btn btn-create">Voltar para a listagem</a>
+            </div>
+        </div>
+        <div class="col-md-6 bg-custom">
+            <img src="~/images/dachshund.jpg" class="img-fluid" alt="Image Description">
+        </div>
+    </div>
+</div>
+

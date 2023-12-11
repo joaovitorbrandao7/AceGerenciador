@@ -1,0 +1,108 @@
+* {
+    font-family: Roboto;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 18px;
+    text-decoration: none;
+    font-family: roboto;
+    font-weight: 400;
+    padding:10px;
+    font-weight: 600;
+}
+
+header {
+    background: linear-gradient(to right, #74ba1f 60%, #0592FF 60%);
+    color: white;
+    padding: 10px 0;
+}
+
+    header img {
+        max-width: 100%; /* Ensure the image doesn't exceed its container */
+        height: auto;
+    }
+
+    header .col .text-end a.fontHeader {
+        color: #ffffff;
+        text-decoration: underline;
+        font-size: 18px;
+        text-decoration: none;
+        font-family: roboto;
+        font-weight: 400;
+    }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background: linear-gradient(to right, #0592FF 75%, #74ba1f 75%);
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.footer p{
+    color: #ffff;
+}
+
+.text-end{
+    display:flex;
+    align-items: center;
+    justify-content: end;
+}
+
+/* Adicione este trecho no seu arquivo de estilos ou em um arquivo separado */
+
+.table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .styled-table th {
+        background-color: #f2f2f2;
+    }
+
+    .styled-table tbody tr:hover {
+        background-color: #f5f5f5;
+    }

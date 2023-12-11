@@ -1,0 +1,42 @@
+﻿@page "/Funcionarios"
+@model FrontAceGerenciador2.Pages.Funcionario.FuncionariosModel;
+
+<h3 class="mt-5">Nossos funcionarios</h3>
+
+
+<div>
+    <table class="p-5">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FuncionarioList[0].IdFuncionario)</th>
+                <th>@Html.DisplayNameFor(model => model.FuncionarioList[0].NomeFuncionario)</th>
+                <th>@Html.DisplayNameFor(model => model.FuncionarioList[0].CargoFuncionario)</th>
+                <th>@Html.DisplayNameFor(model => model.FuncionarioList[0].DataAdmissao)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var funcionarioModel in Model.FuncionarioList)
+            {
+                <tr>
+                    <td>@Html.DisplayTextFor(model => funcionarioModel.IdFuncionario)</td>
+                    <td>@Html.DisplayTextFor(model => funcionarioModel.NomeFuncionario)</td>
+                    <td>@Html.DisplayTextFor(model => funcionarioModel.CargoFuncionario)</td>
+                    <td>@Html.DisplayTextFor(model => funcionarioModel.DataAdmissao)</td>
+                    <td class="borderNone">
+                        <a asp-page="Edit" asp-route-id="@funcionarioModel.IdFuncionario" class="btn-edit">Alterar</a>
+                        <a asp-page="Details" asp-route-id="@funcionarioModel.IdFuncionario" class="btn-details">Visualizar</a>
+                        <a asp-page="Delete" asp-route-id="@funcionarioModel.IdFuncionario" class="btn-delete">Remover</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <div class="mt-3">
+        <a asp-page="/Funcionarios/Create" class="btn-create">+ Adicionar</a>
+
+    </div>
+
+</div>

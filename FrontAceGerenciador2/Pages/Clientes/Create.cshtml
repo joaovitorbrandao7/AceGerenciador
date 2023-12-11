@@ -1,0 +1,59 @@
+﻿@page
+@model FrontAceGerenciador2.Pages.Clientes.CreateModel
+@{
+}
+
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-6">
+         <div class="formEdit">
+                <h3 class=""> Vamos criar um novo Cliente ?</h3>
+
+                <form method="post">
+                    <input type="hidden" asp-for="ClienteModel.IdCliente" />
+
+                    <div class="form-group">
+                        <label asp-for="ClienteModel.NomeCliente"></label>
+                        <input asp-for="ClienteModel.NomeCliente" class="form-control" />
+                        <span asp-validation-for="ClienteModel.NomeCliente" class="text-dange"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ClienteModel.EmailCliente"></label>
+                        <input asp-for="ClienteModel.EmailCliente" class="form-control" />
+                        <span asp-validation-for="ClienteModel.EmailCliente" class="text-dange"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ClienteModel.TelefoneCliente"></label>
+                        <input asp-for="ClienteModel.TelefoneCliente" class="form-control" />
+                        <span asp-validation-for="ClienteModel.TelefoneCliente" class="text-dange"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ClienteModel.EnderecoCliente"></label>
+                        <input asp-for="ClienteModel.EnderecoCliente" class="form-control" />
+                        <span asp-validation-for="ClienteModel.EnderecoCliente" class="text-dange"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ClienteModel.TipoPet"></label>
+                        <input asp-for="ClienteModel.TipoPet" class="form-control" />
+                        <span asp-validation-for="ClienteModel.TipoPet" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-create" value="Salvar" />
+                        <a asp-page="Clientes" class="btn btn-delete">Cancelar</a>
+                    </div>
+
+                </form>
+         </div>
+
+        </div>
+        <div class="col-md-6 bg-custom">
+            <img src="~/images/worlds-smallest-dogs-1647336453.jpg" class="img-fluid" alt="Image Description">
+        </div>
+    </div>
+</div>

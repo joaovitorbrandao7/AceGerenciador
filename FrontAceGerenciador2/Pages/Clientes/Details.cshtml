@@ -1,0 +1,29 @@
+﻿@page
+@model FrontAceGerenciador2.Pages.Clientes.DetailsModel
+
+
+ 
+   <div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-6">
+
+            <div class="formEdit">
+                <h3 class="">Sobre o Cliente</h3>
+
+                <div class="mt-3 mb-5">
+                    <p><strong>Nome: </strong>@Model.ClienteModel.NomeCliente</p>
+                    <p><strong>Email: </strong>@Model.ClienteModel.EmailCliente</p>
+                    <p><strong>Telefone: </strong>@Model.ClienteModel.TelefoneCliente</p>
+                    <p><strong>Endereco: </strong>@Model.ClienteModel.EnderecoCliente</p>
+                    <p><strong>Tipo Pet: </strong>@Model.ClienteModel.TipoPet</p>
+                </div>
+
+                <a asp-page="Clientes" class="btn btn-create">Voltar para a listagem</a>
+            </div>
+        </div>
+        <div class="col-md-6 bg-custom">
+            <img src="~/images/dachshund.jpg" class="img-fluid" alt="Image Description">
+        </div>
+    </div>
+   </div>
+

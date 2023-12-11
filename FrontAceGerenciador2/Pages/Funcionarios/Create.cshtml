@@ -1,0 +1,49 @@
+﻿@page
+@model FrontAceGerenciador2.Pages.Funcionario.CreateModel
+@{
+}
+
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-6">
+            <div class="formEdit">
+                <h3 class=""> Vamos criar um novo Funcionario ?</h3>
+
+                <form method="post">
+                    <input type="hidden" asp-for="FuncionarioModel.IdFuncionario" />
+
+                    <div class="form-group">
+                        <label asp-for="FuncionarioModel.NomeFuncionario"></label>
+                        <input asp-for="FuncionarioModel.NomeFuncionario" class="form-control" />
+                        <span asp-validation-for="FuncionarioModel.NomeFuncionario" class="text-dange"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="FuncionarioModel.CargoFuncionario"></label>
+                        <input asp-for="FuncionarioModel.CargoFuncionario" class="form-control" />
+                        <span asp-validation-for="FuncionarioModel.CargoFuncionario" class="text-dange"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="FuncionarioModel.DataAdmissao"></label>
+                        <input asp-for="FuncionarioModel.DataAdmissao" class="form-control" />
+                        <span asp-validation-for="FuncionarioModel.DataAdmissao" class="text-dange"></span>
+                    </div>
+
+                    
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-create" value="Salvar" />
+                        <a asp-page="Funcionarios" class="btn btn-delete">Cancelar</a>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+        <div class="col-md-6 bg-custom">
+            <img src="~/images/worlds-smallest-dogs-1647336453.jpg" class="img-fluid" alt="Image Description">
+        </div>
+    </div>
+</div>

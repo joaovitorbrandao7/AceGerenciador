@@ -1,0 +1,62 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FrontAceGerenciador</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+@*    <link rel="stylesheet" href="~/FrontAceGerenciador.styles.css" asp-append-version="true" />
+*@    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col text-start">
+                    <img src="~/images/v-20839.png" width="100px" />
+                </div>
+                <div class="col text-end">
+                    <a class="fontHeader" asp-area="" asp-page="/Index">Home</a>
+                    <a class="fontHeader" asp-area="" asp-page="/Products">Produtos</a>
+                    <a class="fontHeader" asp-area="" asp-page="/Customers">Vendas</a>
+                    <a asp-area="" asp-page="/Clientes">Clientes</a>
+                    <a href="/Clientes">Clientes</a>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img src="~/path-to-your-logo" alt="Logo" />
+                </div>
+                <div class="col text-center">
+                    <p>Todos os direitos reservados</p>
+                </div>
+                <div class="col text-end">
+                    <p>Brandao Company</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
