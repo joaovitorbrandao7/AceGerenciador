@@ -1,0 +1,66 @@
+﻿@page "{id:int}"
+@model FrontAceGerenciador2.Pages.Produtos.EditModel
+
+
+
+<div class="container-fluid">
+
+    <div class="row mt-5">
+
+        <div class="col-6">
+            <div class="formEdit">
+                <h3 class=" mb-3">Deseja alterar os dados desse Produto? </h3>
+
+                <form method="post">
+                    <input type="hidden" asp-for="ProdutoModel.ProdutoId" />
+
+                    <div class="form-group">
+                        <label asp-for="ProdutoModel.Nome"></label>
+                        <input asp-for="ProdutoModel.Nome" class="form-control" />
+                        <span asp-validation-for="ProdutoModel.Nome" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProdutoModel.Categoria"></label>
+                        <input asp-for="ProdutoModel.Categoria" class="form-control" />
+                        <span asp-validation-for="ProdutoModel.Categoria" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProdutoModel.Descricao"></label>
+                        <input asp-for="ProdutoModel.Descricao" class="form-control" />
+                        <span asp-validation-for="ProdutoModel.Descricao" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProdutoModel.Preco"></label>
+                        <input asp-for="ProdutoModel.Preco" class="form-control" />
+                        <span asp-validation-for="ProdutoModel.Preco" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProdutoModel.QuantidadeEmEstoque"></label>
+                        <input asp-for="ProdutoModel.QuantidadeEmEstoque" class="form-control" />
+                        <span asp-validation-for="ProdutoModel.QuantidadeEmEstoque" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProdutoModel.QuantidadeVendida"></label>
+                        <input asp-for="ProdutoModel.QuantidadeVendida" class="form-control" />
+                        <span asp-validation-for="ProdutoModel.QuantidadeVendida" class="text-danger"></span>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-create" value="Salvar" />
+                        <a asp-page="Produtos" class="btn btn-delete">Cancelar</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 bg-custom">
+            <img src="~/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg" class="img-fluid" alt="Image Description">
+        </div>
+    </div>
+</div>

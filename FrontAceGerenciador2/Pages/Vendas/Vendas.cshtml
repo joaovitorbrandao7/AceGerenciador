@@ -1,0 +1,80 @@
+﻿@page "/Vendas"
+@model FrontAceGerenciador2.Pages.Vendas.VendasModel;
+
+<h3 class="mt-5">Vendas ativas</h3>
+
+<div>
+    <table class="p-5">
+        <thead>
+            <tr>
+                <th>Codigo da Venda</th>
+                <th>Data</th>
+                <th>Funcionário responsável</th>
+                <th>Cliente</th>
+                <th>Valor da venda</th>
+                <th>Produtos vendidos</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vendaModel in Model.VendaList)
+            {
+                <tr>
+                    <td>@Html.DisplayTextFor(model => vendaModel.VendaId)</td>
+                    <td>@Html.DisplayTextFor(model => vendaModel.DataVenda)</td>
+                    <td>@Html.DisplayTextFor(model => vendaModel.Funcionario.NomeFuncionario)</td>
+                    <td>@Html.DisplayTextFor(model => vendaModel.ClienteId)</td>
+                    <td>R$: @Html.DisplayTextFor(model => vendaModel.TotalVenda)</td>
+
+                    <td>
+                        <ul>
+                            @foreach (var produtoVendido in vendaModel.ProdutosVendidos)
+                            {
+                                @if (produtoVendido != null)
+                                {
+                                    <span>Produto ID: @produtoVendido.ProdutoId - Quantidade: @produtoVendido.Quantidade</span>
+                                }
+                            }
+                        </ul>
+                    </td>
+
+
+                    <td class="borderNone">
+                        <a asp-page="./Edit" asp-route-id="@vendaModel.VendaId" class="btn-edit">Alterar</a>
+                        <a asp-page="./Details" asp-route-id="@vendaModel.VendaId" class="btn-details">Visualizar</a>
+                        <a asp-page="./Delete" asp-route-id="@vendaModel.VendaId" class="btn-delete">Remover</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="mt-3">
+        <a asp-page="/Vendas/Create" class="btn-create">+ Adicionar</a>
+    </div>
+</div>
+
+                        <div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="productDetails"></div>
+    </div>
+</div>
+
+<script>
+    function openModal(detailsUrl) {
+        // Fetch product details and update the modal content here
+        fetch(detailsUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Update modal content with fetched data
+                document.getElementById('productDetails').innerHTML = JSON.stringify(data);
+                document.getElementById('productModal').style.display = 'block';
+            })
+            .catch(error => console.error('Error fetching product details:', error));
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+</script>

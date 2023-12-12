@@ -1,8 +1,11 @@
 using FrontAceGerenciador2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using FrontAceGerenciador2.Data;
 
 namespace FrontAceGerenciador2.Pages.Produtos
 {
@@ -29,19 +32,19 @@ namespace FrontAceGerenciador2.Pages.Produtos
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 return Page();
             }
 
             try
             {
-                var httpProduto = new HttpClient();
+                var httpClient = new HttpClient();
                 var url = "http://localhost:5151/api/Produtos";
-                var serializedProduto = JsonConvert.SerializeObject(ProdutoModel);
-                var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
+                var serializedCliente = JsonConvert.SerializeObject(ProdutoModel);
+                var content = new StringContent(serializedCliente, Encoding.UTF8, "application/json");
 
-                var response = await httpProduto.PostAsync(url, content);
+                var response = await httpClient.PostAsync(url, content);
 
                 if (response.IsSuccessStatusCode)
                 {

@@ -24,13 +24,33 @@ namespace AceGerenciador.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var vendas = _context.Venda
-                .Include(v => v.Clientes)
-                .Include(v => v.Funcionario)
-                .Include(v => v.ProdutosVendidos)
-                .ToList();
+            try
+            {
+                var vendas = _context.Venda
+                    .Include(v => v.Funcionario)
+                    .Include(v => v.ProdutosVendidos)
+                    .Include(v => v.Clientes) 
+                    .ToList();
 
-            return Ok(vendas);
+                var jsonOptions = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                };
+
+                var vendasComClienteId = vendas.Select(v =>
+                {
+                    v.ClienteId = v.Clientes?.IdCliente ?? 0;
+                    return v;
+                });
+                
+                var json = JsonSerializer.Serialize(vendasComClienteId, jsonOptions);
+
+                return Ok(json);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Mensagem = $"Erro ao recuperar as vendas: {ex.Message}" });
+            }
         }
 
         [HttpGet("{id}")]

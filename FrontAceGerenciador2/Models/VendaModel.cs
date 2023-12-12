@@ -11,11 +11,13 @@ namespace FrontAceGerenciador2.Models
 
             public ICollection<ProdutoVendidoModel> ProdutosVendidos { get; set; } = new List<ProdutoVendidoModel>();
 
-            public ClienteModel Funcionario { get; set; }
+            public ClienteModel Cliente { get; set; }
             public int ClienteId { get; set; }
-
-            public FuncionarioModel Clientes { get; set; }
+        
+            public FuncionarioModel Funcionario { get; set; }
             public int FuncionarioId { get; set; }
+            public string NomeCliente { get; set; }
+            public string NomeFuncionario { get; set; }
 
             public void CalcularTotalVenda()
             {

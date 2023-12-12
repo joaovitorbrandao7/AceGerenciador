@@ -46,8 +46,9 @@ namespace AceGerenciador.Data
             {
                 var vendaComDetalhes = _dbContext.Venda
                     .Include(v => v.ProdutosVendidos)
-                        .ThenInclude(pv => pv.Produto) // Inclui os detalhes do produto
-                    .Include(v => v.ClienteId) // Inclui os detalhes do Funcionario
+                        .ThenInclude(pv => pv.Produto) 
+                    .Include(v => v.Clientes) 
+                    .Include(v => v.Funcionario) 
                     .FirstOrDefault(v => v.VendaId == vendaId);
 
                 return vendaComDetalhes;
@@ -58,3 +59,4 @@ namespace AceGerenciador.Data
             => options.UseSqlite("DataSource=tds.db;Cache=Shared");
     }
 }
+

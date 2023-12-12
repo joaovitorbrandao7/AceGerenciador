@@ -12,10 +12,11 @@ namespace AceGerenciador.Models
         public ICollection<ProdutoVendido> ProdutosVendidos { get; set; } = new List<ProdutoVendido>();
 
         public Funcionario Funcionario { get; set; }
-        public int ClienteId { get; set; }
+        public int FuncionarioId { get; set; }
 
         public Clientes Clientes { get; set; }
-        public int FuncionarioId { get; set; }
+        public int ClienteId { get; set; }
+
 
         public void CalcularTotalVenda()
         {

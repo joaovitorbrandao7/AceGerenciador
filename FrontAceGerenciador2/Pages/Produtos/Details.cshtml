@@ -1,0 +1,32 @@
+﻿@page
+@model FrontAceGerenciador2.Pages.Produtos.DetailsModel
+
+
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-6">
+
+            <div class="formEdit">
+                <h3 class="">Sobre o Produto</h3>
+
+                <div class="mt-3 mb-5">
+
+                    <p><strong>ID do Produto: </strong>@Model.ProdutoModel.ProdutoId</p>
+                    <p><strong>Nome: </strong>@Model.ProdutoModel.Nome</p>
+                    <p><strong>Preço: </strong>@Model.ProdutoModel.Preco</p>
+                    <p><strong>Categoria: </strong>@Model.ProdutoModel.Categoria</p>
+                    <p><strong>Quantidade em estoque: </strong>@Model.ProdutoModel.QuantidadeEmEstoque</p>
+                    <p><strong>Qauntidade vendida: </strong>@Model.ProdutoModel.QuantidadeVendida</p>
+
+                </div>
+
+                <a asp-page="Produtos" class="btn btn-create">Voltar para a listagem</a>
+            </div>
+        </div>
+        <div class="col-md-6 bg-custom">
+            <img src="~/images/dachshund.jpg" class="img-fluid" alt="Image Description">
+        </div>
+    </div>
+</div>
+

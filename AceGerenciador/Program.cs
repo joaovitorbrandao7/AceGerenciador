@@ -1,9 +1,15 @@
 using AceGerenciador.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    });
 builder.Services.AddDbContext<AppDbContext>();
 
 builder.Services.AddCors(options =>
@@ -11,21 +17,18 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AceGerenciador",
         builder => {
             builder.WithOrigins("*")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+                .AllowAnyHeader()
+                .AllowAnyMethod();
         }
     );
-}
-);
-
-
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.UseCors("AceGerenciador");
 
+app.UseCors("AceGerenciador");
 
 if (app.Environment.IsDevelopment())
 {
@@ -34,9 +37,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

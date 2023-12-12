@@ -11,12 +11,7 @@ namespace FrontAceGerenciador2.Pages.Clientes
 {
     public class DetailsModel : PageModel
     {
-        private readonly AppDbContext _context;
-
-        public DetailsModel(AppDbContext context)
-        {
-            _context = context;
-        }
+      
 
         [BindProperty]
         public ClienteModel ClienteModel { get; set; }

@@ -1,0 +1,37 @@
+﻿@page
+@model FrontAceGerenciador2.Pages.Produtos.DeleteModel
+@{
+}
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-6">
+
+            <div class="formEdit">
+                <h3 class="">Deseja apagar esse Produto ?</h3>
+
+                <div class="mt-3">
+                    <p><strong>Nome: </strong>@Model.ProdutoModel.ProdutoId</p>
+                    <p><strong>Nome: </strong>@Model.ProdutoModel.Nome</p>
+                    <p><strong>Telefone: </strong>@Model.ProdutoModel.Descricao</p>
+                    <p><strong>Endereco: </strong>@Model.ProdutoModel.Preco</p>
+                    <p><strong>Nome: </strong>@Model.ProdutoModel.QuantidadeVendida</p>
+                    <p><strong>Nome: </strong>@Model.ProdutoModel.QuantidadeEmEstoque</p>
+
+                </div>
+
+                <div class="mt-4">
+                    <form method="post">
+                        <div class="form-group">
+                            <input type="submit" value="Apagar" class="btn btn-create" />
+                            <a asp-page="Produtos" class="btn btn-delete">Retornar para a listagem</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 bg-custom">
+            <img src="~/images/gettyimages-700141990-e1688418771301.webp" class="img-fluid" alt="Image Description">
+        </div>
+    </div>
+</div>

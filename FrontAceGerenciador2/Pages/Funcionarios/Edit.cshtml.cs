@@ -2,7 +2,6 @@ using FrontAceGerenciador2.Data;
 using FrontAceGerenciador2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +11,6 @@ namespace FrontAceGerenciador2.Pages.Funcionario
 {
     public class EditModel : PageModel
     {
-        private readonly AppDbContext _context;
-
-        public EditModel(AppDbContext context)
-        {
-            _context = context;
-        }
-
         [BindProperty]
         public FuncionarioModel FuncionarioModel { get; set; }
 
@@ -29,7 +21,17 @@ namespace FrontAceGerenciador2.Pages.Funcionario
                 return NotFound();
             }
 
-            FuncionarioModel = await _context.Funcionarios.FirstOrDefaultAsync(m => m.IdFuncionario== id);
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5151/api/Funcionarios/{id}";
+            var response = await httpClient.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return NotFound();
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            FuncionarioModel = JsonConvert.DeserializeObject<FuncionarioModel>(content);
 
             if (FuncionarioModel == null)
             {
@@ -46,22 +48,10 @@ namespace FrontAceGerenciador2.Pages.Funcionario
                 return Page();
             }
 
-            var funcionarioToUpdate = await _context.Funcionarios.FindAsync(id);
-
-            if (funcionarioToUpdate == null)
-            {
-                return NotFound();
-            }
-
-            funcionarioToUpdate.NomeFuncionario = FuncionarioModel.NomeFuncionario;
-            funcionarioToUpdate.CargoFuncionario = FuncionarioModel.CargoFuncionario;
-            funcionarioToUpdate.DataAdmissao = FuncionarioModel.DataAdmissao;
-           
-
             try
             {
                 var httpClient = new HttpClient();
-                var url = $"http://localhost:5151/api/Funcionarios/{id}"; // Substitua isso pela URL correta da sua API
+                var url = $"http://localhost:5151/api/Funcionarios/{id}";
                 var serializedFuncionario = JsonConvert.SerializeObject(FuncionarioModel);
                 var content = new StringContent(serializedFuncionario, Encoding.UTF8, "application/json");
 
@@ -69,7 +59,6 @@ namespace FrontAceGerenciador2.Pages.Funcionario
 
                 if (response.IsSuccessStatusCode)
                 {
-                    await _context.SaveChangesAsync();
                     return RedirectToPage("Funcionarios");
                 }
                 else

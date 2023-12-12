@@ -1,10 +1,10 @@
 using FrontAceGerenciador2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FrontAceGerenciador2.Data;
-using System.Net;
 
 namespace FrontAceGerenciador2.Pages.Clientes
 {
@@ -27,7 +27,18 @@ namespace FrontAceGerenciador2.Pages.Clientes
                 return NotFound();
             }
 
-            ClienteModel = await _context.Clientes.FindAsync(id);
+            
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5151/api/Clientes/{id}"; 
+            var response = await httpClient.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return NotFound();
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            ClienteModel = Newtonsoft.Json.JsonConvert.DeserializeObject<ClienteModel>(content);
 
             if (ClienteModel == null)
             {
@@ -48,39 +59,26 @@ namespace FrontAceGerenciador2.Pages.Clientes
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var clienteToDelete = await _context.Clientes.FindAsync(id);
-
-                        if (clienteToDelete != null)
-                        {
-                            _context.Remove(clienteToDelete);
-                            await _context.SaveChangesAsync();
-                        }
+                     
 
                         return RedirectToPage("Clientes");
                     }
                     else
                     {
-                        // Log detalhes da resposta para diagnóstico
                         Console.WriteLine($"DELETE request failed. Status Code: {response.StatusCode}, Reason: {response.ReasonPhrase}");
 
-                        // Handle other status codes if needed
-                        ModelState.AddModelError(string.Empty, "Falha ao excluir o Funcionario. Código de status: " + response.StatusCode);
+                        ModelState.AddModelError(string.Empty, "Falha ao excluir o Cliente. Código de status: " + response.StatusCode);
                         return Page();
                     }
                 }
             }
             catch (HttpRequestException ex)
             {
-                // Log detalhes da exceção para diagnóstico
                 Console.WriteLine($"HTTP request failed with exception: {ex.Message}");
 
-                // Handle HttpRequestException
                 ModelState.AddModelError(string.Empty, "Erro ao realizar a solicitação HTTP: " + ex.Message);
                 return Page();
             }
         }
-
-
-
     }
 }

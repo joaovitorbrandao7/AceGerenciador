@@ -49,24 +49,44 @@ namespace AceGerenciador.Controllers
         [HttpPut("{id:int}")]
         public IActionResult Put(int id, [FromBody] Produto produto)
         {
+            if (produto == null || id != produto.ProdutoId)
+            {
+                return BadRequest(); // Bad request if the product or IDs don't match
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState); // Return validation errors
+            }
+
             var existingProduto = _context.Produtos.FirstOrDefault(x => x.ProdutoId == id);
 
             if (existingProduto == null)
             {
-                return NotFound();
+                return NotFound(); // Product not found
             }
 
+            // Update only the properties that are allowed to be updated
             existingProduto.Nome = produto.Nome;
             existingProduto.Preco = produto.Preco;
             existingProduto.QuantidadeEmEstoque = produto.QuantidadeEmEstoque;
             existingProduto.Categoria = produto.Categoria;
             existingProduto.Descricao = produto.Descricao;
 
-            _context.Produtos.Update(existingProduto);
-            _context.SaveChanges();
-
-            return Ok(existingProduto);
+            try
+            {
+                _context.SaveChanges();
+                return Ok(existingProduto);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                // Handle concurrency issues if needed
+                // For example, you can reload the entity and try updating again
+                // or return a specific error response
+                return StatusCode(409, "Concurrency conflict");
+            }
         }
+
 
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
